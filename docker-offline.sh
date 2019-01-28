@@ -22,6 +22,12 @@ case $1 in
 
 	"load")
 		mapfile -t images < <(ls $IMAGEDIR | grep .tar)
+		
+		if [ ! -d "$IMAGEDIR" ]; then
+			echo "Creating $IMAGEDIR"	
+			mkdir $IMAGEDIR
+		fi
+		
 		for image in "${images[@]}"
 		do
 			echo $image
