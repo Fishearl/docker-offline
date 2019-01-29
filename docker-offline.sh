@@ -16,7 +16,7 @@ case $1 in
 		for image in "${images[@]}"
 		do
 			echo $image
-			docker save $image > $IMAGEDIR/$image.tar
+			docker save $image > $IMAGEDIR/$(echo $image | sed -e "s/\//-/g")
 		done
 		;;
 
@@ -31,7 +31,7 @@ case $1 in
 		for image in "${images[@]}"
 		do
 			echo $image
-			docker load < $IMAGEDIR/$image
+			docker load < "$IMAGEDIR/$image"
 		done
 		;;
 	*)
